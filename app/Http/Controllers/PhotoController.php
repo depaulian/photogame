@@ -6,7 +6,6 @@ use App\ValidationService;
 use App\Http\Requests;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
-use Intervention\Image\ImageManagerStatic as Image;
 
 
 class PhotoController extends Controller
@@ -22,7 +21,7 @@ class PhotoController extends Controller
     public function getPhotos(Request $request){
    	    $input = $request->all();
     	if(!$this->validationService->isValid($input,'get_photos')){
-           return response()->json(['message' => $this->validationService->errors], 202); 
+           return response()->json(['message' => $this->validationService->errors], 401); 
         }
 
         try 
@@ -30,7 +29,7 @@ class PhotoController extends Controller
                 $results = $this->photo->getPhotos($input);
                 if($results){
                     return response()->json([
-                                            'status'         => 'Success',
+                                            'type'         => 'Success',
                                             'status_code'    =>100,
                                             'result'         =>$results,
                                         ], 202);
@@ -98,18 +97,17 @@ class PhotoController extends Controller
              if (!file_exists('photos')) {
                 mkdir('photos', 0777, true);
              }
-             $image_url = 'photos/img_'.$time.'_'.$input['user_id'].'.jpg';
-             if(!file_put_contents($image_url,$image)){
+             $image_url = 'photos/img_'.$time.'_'.$input['owner'].'.jpg';
+             if(!file_put_contents($image_url,$photo)){
                 return response()->json([
                                 'message'       =>'An error occured while saving image',
                                 'status_code'   => 101,
                                 'status'        =>'Error'
                             ],401);
              }
-             $image = Image::make($image_url)->resize(800,null); 
              $input['photo'] = $image_url;
              $photo = $this->photo->postPhoto($input);
-             if($results){
+             if($photo){
                  return response()->json([
                                          'status'         => 'Success',
                                          'status_code'    =>100,

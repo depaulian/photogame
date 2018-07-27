@@ -1,10 +1,19 @@
 <?php
 
 namespace App;
+use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use DB;
 
-class User extends Authenticatable
+class Photo extends Model
 {
+    
+    /**
+     * The database table used by the model.
+     *
+     * @var string
+     */
+    protected $table = 'photo';
     /**
      * The attributes that are mass assignable.
      *
@@ -22,16 +31,30 @@ class User extends Authenticatable
         $this->category             = $data['category'];
         $this->owner                = $data['owner'];
         $this->location             = $data['location'];
-        $this->time_taken           = $data['time_taken'];
+        $this->time_taken           = date('Y-m-d h:i:s',strtotime($data['time_taken']));
         $this->save();
         $this->id                   = $this->id;   
         return $this;
     }
 
     public function getPhotos($data){
-        $sql = 'SELECT a.id, a.caption, a.photo, a.category as category_id, b.name as category, a.owner as owner_id, c.username,
-                a.location, a.time_taken, a.created_at FROM photo a LEFT JOIN category b on a.category=b.id LEFT JOIN users c on
-                a.owner = c.id LIMIT '.$data['limit'].' OFFSET '.$data['offset'].'';
+        switch($data['sorting']){
+            case 1:
+            $sql = 'SELECT a.id, a.caption, a.photo, a.category as category_id, b.name as category, a.owner as owner_id, c.username,
+            a.location, a.time_taken, a.created_at FROM photo a LEFT JOIN category b on a.category=b.id LEFT JOIN users c on
+            a.owner = c.id ORDER BY a.id DESC LIMIT '.$data['limit'].' OFFSET '.$data['offset'].'';
+            break;
+            case 2:
+            $sql = 'SELECT a.id, a.caption, a.photo, a.category as category_id, b.name as category, a.owner as owner_id, c.username,
+            a.location, a.time_taken, a.created_at FROM photo a LEFT JOIN category b on a.category=b.id LEFT JOIN users c on
+            a.owner = c.id ORDER BY a.id DESC LIMIT '.$data['limit'].' OFFSET '.$data['offset'].'';
+            break;
+            default:
+            $sql = 'SELECT a.id, a.caption, a.photo, a.category as category_id, b.name as category, a.owner as owner_id, c.username,
+            a.location, a.time_taken, a.created_at FROM photo a LEFT JOIN category b on a.category=b.id LEFT JOIN users c on
+            a.owner = c.id ORDER BY a.id DESC LIMIT '.$data['limit'].' OFFSET '.$data['offset'].'';
+        }
+
         return DB::select(DB::raw($sql)); 
     }
 

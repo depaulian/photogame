@@ -29,11 +29,11 @@ return [
     |--------------------------------------------------------------------------
     |
     | Specify the length of time (in minutes) that the token will be valid for.
-    | Defaults to 1 hour
+    | Defaults to 1 month
     |
     */
 
-    'ttl' => 60,
+    'ttl' => 40320,
 
     /*
     |--------------------------------------------------------------------------
