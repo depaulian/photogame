@@ -51,6 +51,39 @@ class PhotoController extends Controller
                                 ], 401);
         }
     }
+
+    public function getPhoto(Request $request){
+        $input = $request->all();
+     if(!$this->validationService->isValid($input,'get_photos')){
+        return response()->json(['message' => $this->validationService->errors], 202); 
+     }
+
+     try 
+     {
+             $result = $this->photo->getPhoto($input);
+             if($result){
+                 return response()->json([
+                                         'status'         => 'Success',
+                                         'status_code'    =>100,
+                                         'result'         =>$result,
+                                     ], 202);
+             }else{
+                 return response()->json([
+                                         'status'         => 'Success',
+                                         'status_code'    =>100,
+                                         'result'         =>[],
+                                     ], 202);
+             }
+     }
+     catch(JWTException $e)
+     {
+         return response()->json([
+                                   'status'          => 'Error',
+                                   'status_code'     => 102,
+                                   'message'         =>'could not verify token',
+                             ], 401);
+     }
+    }
     
     public function postPhoto(Request $request){
      $input = $request->all();

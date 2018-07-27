@@ -25,7 +25,12 @@ $api->get('validate-email/{q}', 'App\Http\Controllers\Auth\AuthController@checkE
 $api->post('signup', 'App\Http\Controllers\Auth\AuthController@registerUser');  
 $api->post('signin', 'App\Http\Controllers\Auth\AuthController@loginUser'); 
     //end user registration routes
-
+    // photo routes
+$api->get('photos','App\Http\Controllers\Auth\PhotoController@getPhotos');
+$api->get('photos/{id}','App\Http\Controllers\Auth\PhotoController@getPhoto');
+$api->post('vote-photo','App\Http\Controllers\Auth\PhotoController@votePhoto');
+$api->post('view-photo','App\Http\Controllers\Auth\PhotoController@viewPhoto');
+    // photo routes
 //END INAPP ROUTES
 
 });

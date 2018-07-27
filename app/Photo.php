@@ -28,7 +28,19 @@ class User extends Authenticatable
         return $this;
     }
 
+    public function getPhotos($data){
+        $sql = 'SELECT a.id, a.caption, a.photo, a.category as category_id, b.name as category, a.owner as owner_id, c.username,
+                a.location, a.time_taken, a.created_at FROM photo a LEFT JOIN category b on a.category=b.id LEFT JOIN users c on
+                a.owner = c.id LIMIT '.$data['limit'].' OFFSET '.$data['offset'].'';
+        return DB::select(DB::raw($sql)); 
+    }
 
+    public function getPhoto($data){
+        $sql = 'SELECT a.id, a.caption, a.photo, a.category as category_id, b.name as category, a.owner as owner_id, c.username,
+                a.location, a.time_taken, a.created_at FROM photo a LEFT JOIN category b on a.category=b.id LEFT JOIN users c on
+                a.owner WHERE a.id = '.$data['photo_id'].'';
+        return DB::select(DB::raw($sql))[0]; 
+    }
 
     public function votePhoto($data){
         $vote = DB::table('photo_votes')->where('user_id',$data['user_id'])->first();
