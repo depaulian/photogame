@@ -129,4 +129,68 @@ class PhotoController extends Controller
                              ], 401);
      }
     }
+
+    public function votePhoto(Request $request){
+        $input = $request->all();
+        if(!$this->validationService->isValid($input,'vote_photo')){
+           return response()->json(['message' => $this->validationService->errors], 202); 
+        }
+   
+        try 
+        {       
+                $vote = $this->photo->votePhoto($input);
+                if($vote){
+                    return response()->json([
+                                            'status'         => 'Success',
+                                            'status_code'    =>100,
+                                            'result'         =>$vote,
+                                        ], 202);
+                }else{
+                    return response()->json([
+                                            'status'         => 'Error',
+                                            'status_code'    =>101,
+                                        ], 401);
+                }
+        }
+        catch(JWTException $e)
+        {
+            return response()->json([
+                                      'status'          => 'Error',
+                                      'status_code'     => 102,
+                                      'message'         =>'could not verify token',
+                                ], 401);
+        }
+       }
+
+       public function viewPhoto(Request $request){
+        $input = $request->all();
+        if(!$this->validationService->isValid($input,'view_photo')){
+           return response()->json(['message' => $this->validationService->errors], 202); 
+        }
+   
+        try 
+        {       
+                $view = $this->photo->viewPhoto($input);
+                if($view){
+                    return response()->json([
+                                            'status'         => 'Success',
+                                            'status_code'    =>100,
+                                            'result'         =>$view,
+                                        ], 202);
+                }else{
+                    return response()->json([
+                                            'status'         => 'Error',
+                                            'status_code'    =>101,
+                                        ], 401);
+                }
+        }
+        catch(JWTException $e)
+        {
+            return response()->json([
+                                      'status'          => 'Error',
+                                      'status_code'     => 102,
+                                      'message'         =>'could not verify token',
+                                ], 401);
+        }
+       }
 }
