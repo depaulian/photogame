@@ -62,7 +62,7 @@ class Photo extends Model
     }
 
     public function getPhoto($data){
-        $sql = 'SELECT a.id, a.caption, a.photo, a.category as category_id, a.description, b.name as category, a.owner as owner_id, c.username,
+        $sql = 'SELECT a.id, a.caption, a.photo, a.category as category_id, a.description, b.name as category, a.owner as   , c.username,
                 a.location, a.time_taken,vote_up, vote_down, views, ((vote_up + 1.9208) / (vote_up + vote_down) - 1.96 * SQRT((vote_up * vote_down) / (vote_up + vote_down) + 0.9604) / (vote_up + vote_down)) / (1 + 3.8416 / (vote_up + vote_down)) AS vote_score,
                 views, a.created_at FROM photo a LEFT JOIN category b on a.category=b.id LEFT JOIN users c on a.owner = c.id 
                 WHERE a.id = '.$data['photo_id'].'';

@@ -76,7 +76,7 @@ class AuthController extends Controller
             if (! $token = JWTAuth::attempt($credentials)) {
                 return response()->json([
                                         'status' => 'Error',
-                                        'message'=>'Username and/or password',
+                                        'message'=>'Invalid Username and/or password',
                                         'status_code'=>102
                                         ], 200);
             }
@@ -89,7 +89,7 @@ class AuthController extends Controller
         // all good so return the token
         $user = User::where('username','=',$request->input('username'))->get()->first();
 
-        return response()->json(['status'=>'Success','status_code'=>100,'user'=>$this->user->refactorUser($user,$token),'token'=>$token],202);
+        return response()->json(['status'=>'Success','status_code'=>100,'user'=>$this->user->refactorUser($user,$token),'token'=>$token],200);
 
     }
 
