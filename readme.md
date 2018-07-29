@@ -7,7 +7,7 @@ photos and voting photos.
 
 Endpoints for user authentication and Onboarding. These endpoints require no authetication/access token
 
-* [Sign In](signin.md) : `POST /v1/signin`
+* [Sign In] : `POST /v1/signin`
 * [Sign Up](signup.md) : `POST /v1/signup`
 * [Validate Username](validateusername.md) : `GET /validate-username/{q}`
 * [Validate Email](validateemail.md) : `GET /validate-useremailname/{q}`
