@@ -32,6 +32,7 @@ $api->get('photos/{id}','App\Http\Controllers\PhotoController@getPhoto');
 $api->post('vote-photo','App\Http\Controllers\PhotoController@votePhoto');
 $api->post('view-photo','App\Http\Controllers\PhotoController@viewPhoto');
     // photo routes
+$api->post('signout', 'App\Http\Controllers\Auth\AuthController@signOut'); 
 //END INAPP ROUTES
 
 });

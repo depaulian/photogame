@@ -159,4 +159,22 @@ class AuthController extends Controller
         }
         return $this->response->withArray(['token'=>$token]);
     }
+
+    public function signOut(Request $request){
+        $token = JWTAuth::getToken();
+        if(!$token){
+            return response()->json([
+                'status_code'           =>101,
+                'status_message'        =>'Token not provided'
+            ],401);
+        }
+        //invalidate token
+        JWTAuth::setToken($token)->invalidate();
+        
+        //send back response to user
+        return response()->json([
+            'status_code'           =>100,
+            'status_message'        =>'User Logged Out'
+        ],200);
+    }
 }

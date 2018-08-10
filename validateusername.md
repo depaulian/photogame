@@ -1,6 +1,6 @@
 # Validate Email
 
-Used to check if the email address is already in use
+Used to check if the username is already in use
 
 **URL** : `validate-username/{q}`
 
