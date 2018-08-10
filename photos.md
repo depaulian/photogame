@@ -31,11 +31,11 @@ NONE
     "result":   "[list of photos from]",
 }
 ```
-**result**
+**result (Photo object)**
 ```json
 {
-    "id":  "Success",
-    "caption":  100,
+    "id":  "number",
+    "caption":  "String",
     "photo":   "[string containing url of photo]",
     "category_id":   "[number]",
     "category":   "[category photo belongs to]",
