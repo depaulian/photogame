@@ -2,7 +2,7 @@
 
 Used to check if the username is already in use
 
-**URL** : `validate-username/{q}`
+**URL** : `/v1/validate-username/{q}`
 
 **Method** : `GET`
 

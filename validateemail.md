@@ -2,7 +2,7 @@
 
 Used to check if the email address is already in use
 
-**URL** : `validate-username/{q}`
+**URL** : `/v1/validate-username/{q}`
 
 **Method** : `GET`
 

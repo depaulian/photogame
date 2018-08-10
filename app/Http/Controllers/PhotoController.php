@@ -101,7 +101,7 @@ class PhotoController extends Controller
              if(!file_put_contents($image_url,$photo)){
                 return response()->json([
                                 'message'       =>'An error occured while saving image',
-                                'status_code'   => 101,
+                                'status_code'   => 103,
                                 'status'        =>'Error'
                             ],401);
              }
@@ -112,7 +112,7 @@ class PhotoController extends Controller
                                          'status'         => 'Success',
                                          'status_code'    =>100,
                                          'result'         =>$photo,
-                                     ], 202);
+                                     ], 200);
              }else{
                  return response()->json([
                                          'status'         => 'Error',

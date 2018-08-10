@@ -2,7 +2,7 @@
 
 Used to signout and invalidate a token till it expires
 
-**URL** : `/vi/signout/`
+**URL** : `/v1/signout/`
 
 **Method** : `POST`
 

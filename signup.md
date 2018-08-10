@@ -1,8 +1,8 @@
-# Login
+# Sign Up
 
 Used to collect a Token for a registered User.
 
-**URL** : `/vi/login/`
+**URL** : `/v1/login/`
 
 **Method** : `POST`
 
