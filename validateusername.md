@@ -25,7 +25,7 @@ NONE
 ```json
 {
     "status_code":1,
-    "status_message":"Email Available"
+    "status_message":"Username Available"
 }
 ```
 
@@ -38,6 +38,6 @@ NONE
 ```json
 {
     "status_code":0,
-    "status_message":"Email Address already taken"
+    "status_message":"Username Address already taken"
 }
 ```
