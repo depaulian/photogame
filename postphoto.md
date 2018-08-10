@@ -15,9 +15,9 @@ Used to post a photo and its atributes to the remote server.
     "caption": "[string required]",
     "photo": "[base64 string of the photo]",
     "description": "[string (optional)]",
-    "category": "[number]",
+    "category": "[number (optional)]",
     "owner": "[number]",
-    "location": "[string]",
+    "location": "[string (optional)]",
     "time_taken": "[Date Time]",
 }
 ```
@@ -53,7 +53,7 @@ Used to post a photo and its atributes to the remote server.
 ```json
 {
     "status": "Error",
-    "status_code": 101,
+    "status_code": 102,
     "message":"Could not verify token"
 }
 ```
