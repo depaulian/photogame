@@ -29,7 +29,7 @@ class PhotoController extends Controller
                 $results = $this->photo->getPhotos($input);
                 if($results){
                     return response()->json([
-                                            'type'         => 'Success',
+                                            'status'         => 'Success',
                                             'status_code'    =>100,
                                             'result'         =>$results,
                                         ], 202);
